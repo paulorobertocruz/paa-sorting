@@ -1,13 +1,5 @@
 #include<stdio.h>
-#include<stdlib.h>
-#include <time.h>
-#include<sys/time.h>
-
-typedef struct Vector2D
-{
-    int x;
-    int y;
-} Vector2D;
+#include<time.h>
 
 typedef struct INFO
 {
@@ -99,7 +91,7 @@ int main(int argc, char **argv)
     
     FILE *arquivo;
 
-    aquivo = fopen(argv[1], "r");
+    arquivo = fopen(argv[1], "r");
 
     clock_t clock_in, clock_out;
 
