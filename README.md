@@ -1,0 +1,1 @@
+sempre compilar objetos com final .o ex.: g++ -o selection.o selection.cpp
