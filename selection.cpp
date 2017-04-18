@@ -31,18 +31,18 @@ void selectoin_sort()
 
         for(j = 1; j < i + 1; j++)
         {            
-            comparacoes[comparacoes.size()-1]++;
+            // comparacoes[comparacoes.size()-1]++;
             if( v[j] > v[maxPosition] )
             {
                 maxPosition = j;
             }
         }
 
-        comparacoes[comparacoes.size()-1]++;
+        // comparacoes[comparacoes.size()-1]++;
         if (i != maxPosition)
         {
             //troca
-            trocas[trocas.size()-1]++;
+            // trocas[trocas.size()-1]++;
             temp = v[i];
             v[i] = v[maxPosition];
             v[maxPosition] = temp;
@@ -111,10 +111,10 @@ int main(int argc, char **argv)
     leituraChamada("./entradas/desordenados/ODE-50000.txt", "./saidas/selection/desordenados/SO-50000.txt");
     leituraChamada("./entradas/desordenados/ODE-100000.txt", "./saidas/selection/desordenados/SO-100000.txt");
 
-    ofstream gravarDados("./dados_selection_cmp.txt");
+    ofstream gravarDados("./dados_selection.txt");
     for(int i = 0; i < comparacoes.size(); i++)
         gravarDados << labels[i] << ": tempo:" << tempos[i] << " comparacoes:"<< comparacoes[i] << " trocas:" << trocas[i] << endl;
 
 
-  return 0; 
+    return 0; 
 }
