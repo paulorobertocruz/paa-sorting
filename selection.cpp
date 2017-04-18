@@ -7,8 +7,11 @@
 using namespace std;
 
 vector<int> v;
-int trocas = 0;
-int comparacoes = 0;
+
+vector<long long int> comparacoes;
+vector<long long int> trocas;
+vector<float> tempos;
+vector<string> labels;
 
 void selectoin_sort()
 {    
@@ -27,19 +30,19 @@ void selectoin_sort()
         maxPosition = 0;
 
         for(j = 1; j < i + 1; j++)
-        {
-            comparacoes += 1;
+        {            
+            comparacoes[comparacoes.size()-1]++;
             if( v[j] > v[maxPosition] )
             {
                 maxPosition = j;
             }
         }
 
-        comparacoes += 1;
+        comparacoes[comparacoes.size()-1]++;
         if (i != maxPosition)
         {
             //troca
-            trocas += 1;
+            trocas[trocas.size()-1]++;
             temp = v[i];
             v[i] = v[maxPosition];
             v[maxPosition] = temp;
@@ -54,9 +57,14 @@ void selectoin_sort()
 void leituraChamada(string entrada, string saida)
 {
     v.clear();
-    comparacoes = 0;
-    trocas = 0;
     
+    labels.push_back(entrada);
+
+    comparacoes.push_back(0);
+    
+    trocas.push_back(0);
+    
+
     ifstream leitura(entrada.c_str()); // tipo para leitura de arquivo
     ofstream escrita(saida.c_str()); // tipo para escrita de arquivo
     clock_t inicio, fim;       // para calcular tempo de cpu
@@ -73,12 +81,9 @@ void leituraChamada(string entrada, string saida)
     fim = clock(); // Fim da contagem do tempo de CPU
 
     tempo = (fim - inicio)/(double)CLOCKS_PER_SEC; //Cálculo do tempo de CPU
-
+    tempos.push_back(tempo);
     //Escrita no arquivo ---------------------------------------
-    escrita << "Tempo: " << tempo << "\n";
-    escrita << "Trocas: " << trocas << "\n";
-    escrita << "Comparacoes: " << comparacoes << "\n";
-
+    //escrita << "Tempo: " << tempo << "\n";
     for(int i = 0; i < v.size(); i++)
     escrita << v[i] << " ";//escrita dos dados ordenados arquivo de saída
     //----------------------------------------------------------
@@ -105,4 +110,11 @@ int main(int argc, char **argv)
     leituraChamada("./entradas/desordenados/ODE-10000.txt", "./saidas/selection/desordenados/SO-10000.txt");
     leituraChamada("./entradas/desordenados/ODE-50000.txt", "./saidas/selection/desordenados/SO-50000.txt");
     leituraChamada("./entradas/desordenados/ODE-100000.txt", "./saidas/selection/desordenados/SO-100000.txt");
+
+    ofstream gravarDados("./dados_selection_cmp.txt");
+    for(int i = 0; i < comparacoes.size(); i++)
+        gravarDados << labels[i] << ": tempo:" << tempos[i] << " comparacoes:"<< comparacoes[i] << " trocas:" << trocas[i] << endl;
+
+
+  return 0; 
 }
