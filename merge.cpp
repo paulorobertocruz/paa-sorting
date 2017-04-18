@@ -18,6 +18,7 @@ void merge(int, int , int );
 void mergesort( int low, int high)
 {
     int mid;
+    comparacoes[comparacoes.size()-1]++;
     if (low < high)
     {
         mid=(low+high)/2;
@@ -39,10 +40,12 @@ void merge( int low, int high, int mid)
     
     c.resize(v.size());
 
+    comparacoes[comparacoes.size()-1]++;
     while (i <= mid && j <= high)
     {
+        comparacoes[comparacoes.size()-1]++;
         if (v[i] < v[j])
-        {
+        {            
             c[k] = v[i];
             k++;
             i++;
@@ -54,12 +57,16 @@ void merge( int low, int high, int mid)
             j++;
         }
     }
+
+    comparacoes[comparacoes.size()-1]++;
     while (i <= mid)
     {
         c[k] = v[i];
         k++;
         i++;
     }
+
+    comparacoes[comparacoes.size()-1]++;
     while (j <= high)
     {
         c[k] = v[j];
@@ -68,6 +75,7 @@ void merge( int low, int high, int mid)
     }
     for (i = low; i < k; i++)
     {
+        trocas[trocas.size()-1]++;
         v[i] = c[i];
     }
 }
