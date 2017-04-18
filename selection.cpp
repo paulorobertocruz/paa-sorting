@@ -54,6 +54,9 @@ void selectoin_sort()
 void leituraChamada(string entrada, string saida)
 {
     v.clear();
+    comparacoes = 0;
+    trocas = 0;
+    
     ifstream leitura(entrada.c_str()); // tipo para leitura de arquivo
     ofstream escrita(saida.c_str()); // tipo para escrita de arquivo
     clock_t inicio, fim;       // para calcular tempo de cpu
