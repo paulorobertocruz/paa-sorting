@@ -1,5 +1,3 @@
 {
-    "files.associations": {
-        "initializer_list": "cpp"
-    }
+    "files.associations": {"initializer_list":"cpp","ctime":"cpp","iostream":"cpp"}
 }
