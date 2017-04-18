@@ -53,40 +53,53 @@ void selectoin_sort()
 
 void leituraChamada(string entrada, string saida)
 {
-  ifstream leitura(entrada.c_str()); // tipo para leitura de arquivo
-  ofstream escrita(saida.c_str()); // tipo para escrita de arquivo
-  clock_t inicio, fim;       // para calcular tempo de cpu
-  double tempo;
-  int aux;
+    v.clear();
+    ifstream leitura(entrada.c_str()); // tipo para leitura de arquivo
+    ofstream escrita(saida.c_str()); // tipo para escrita de arquivo
+    clock_t inicio, fim;       // para calcular tempo de cpu
+    double tempo;
+    int aux;
 
-  //Leitura do arquivo ----------------------------------------
-  while(leitura >> aux)
-    v.push_back(aux); // escrita no vector
-  //-----------------------------------------------------------
+    //Leitura do arquivo ----------------------------------------
+    while(leitura >> aux)
+        v.push_back(aux); // escrita no vector
+    //-----------------------------------------------------------
 
-  inicio = clock(); // início da contagem do tempo de CPU
-  selectoin_sort(); // chamada do método de ordenação
-  fim = clock(); // Fim da contagem do tempo de CPU
+    inicio = clock(); // início da contagem do tempo de CPU
+    selectoin_sort(); // chamada do método de ordenação
+    fim = clock(); // Fim da contagem do tempo de CPU
 
-  tempo = (fim - inicio)/(double)CLOCKS_PER_SEC; //Cálculo do tempo de CPU
+    tempo = (fim - inicio)/(double)CLOCKS_PER_SEC; //Cálculo do tempo de CPU
 
-  //Escrita no arquivo ---------------------------------------
-  escrita << "Tempo: " << tempo << "\n";
-  //escrita << "Trocas: " << trocas << "\n";
-  //escrita << "Comparacoes" << comparacoes << "\n";
+    //Escrita no arquivo ---------------------------------------
+    escrita << "Tempo: " << tempo << "\n";
+    escrita << "Trocas: " << trocas << "\n";
+    escrita << "Comparacoes: " << comparacoes << "\n";
 
-  for(int i = 0; i < v.size(); i++)
-  escrita << v[i] << " ";//escrita dos dados ordenados arquivo de saída
-  //----------------------------------------------------------
+    for(int i = 0; i < v.size(); i++)
+    escrita << v[i] << " ";//escrita dos dados ordenados arquivo de saída
+    //----------------------------------------------------------
 }
 
 
 int main(int argc, char **argv)
-{   
-    leituraChamada("./entradas/desordenados/ODE-100.txt", "./saidas/selection/desordenadas/SO-100.txt");
-    leituraChamada("./entradas/desordenados/ODE-1000.txt", "./saidas/selection/desordenadas/SO-1000.txt");
-    leituraChamada("./entradas/desordenados/ODE-10000.txt", "./saidas/selection/desordenadas/SO-10000.txt");
-    leituraChamada("./entradas/desordenados/ODE-50000.txt", "./saidas/selection/desordenadas/SO-50000.txt");
-    leituraChamada("./entradas/desordenados/ODE-100000.txt", "./saidas/selection/desordenadas/SO-100000.txt");
+{
+    //comparações e trocas
+    leituraChamada("./entradas/crescente/OC-100.txt", "./saidas/selection/crescente/OC-100.txt");
+    leituraChamada("./entradas/crescente/OC-1000.txt", "./saidas/selection/crescente/OC-1000.txt");
+    leituraChamada("./entradas/crescente/OC-10000.txt", "./saidas/selection/crescente/OC-10000.txt");
+    leituraChamada("./entradas/crescente/OC-50000.txt", "./saidas/selection/crescente/OC-50000.txt");
+    leituraChamada("./entradas/crescente/OC-100000.txt", "./saidas/selection/crescente/OC-100000.txt");
 
+    leituraChamada("./entradas/decrescente/OD-100.txt", "./saidas/selection/decrescente/OD-100.txt");
+    leituraChamada("./entradas/decrescente/OD-1000.txt", "./saidas/selection/decrescente/OD-1000.txt");
+    leituraChamada("./entradas/decrescente/OD-10000.txt", "./saidas/selection/decrescente/OD-10000.txt");
+    leituraChamada("./entradas/decrescente/OD-50000.txt", "./saidas/selection/decrescente/OD-50000.txt");
+    leituraChamada("./entradas/decrescente/OD-100000.txt", "./saidas/selection/decrescente/OD-100000.txt");
+
+    leituraChamada("./entradas/desordenados/ODE-100.txt", "./saidas/selection/desordenados/SO-100.txt");
+    leituraChamada("./entradas/desordenados/ODE-1000.txt", "./saidas/selection/desordenados/SO-1000.txt");
+    leituraChamada("./entradas/desordenados/ODE-10000.txt", "./saidas/selection/desordenados/SO-10000.txt");
+    leituraChamada("./entradas/desordenados/ODE-50000.txt", "./saidas/selection/desordenados/SO-50000.txt");
+    leituraChamada("./entradas/desordenados/ODE-100000.txt", "./saidas/selection/desordenados/SO-100000.txt");
 }
