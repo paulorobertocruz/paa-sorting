@@ -8,9 +8,10 @@ using namespace std;
 
 vector<int> v;
 
-int trocas = 0;
-
-int comparacoes = 0;
+vector<long long int> comparacoes;
+vector<long long int> trocas;
+vector<float> tempos;
+vector<string> labels;
 
 void merge(int, int , int );
 
@@ -72,14 +73,16 @@ void merge( int low, int high, int mid)
 }
 
 
-void leituraChamada(string entrada, string saida)
+void leituraChamada(string entrada)
 {    
     v.clear();
-    comparacoes = 0;
-    trocas = 0;
+    comparacoes.push_back(0);
+    trocas.push_back(0);
+    labels.push_back(entrada);
+
     
     ifstream leitura(entrada.c_str()); // tipo para leitura de arquivo
-    ofstream escrita(saida.c_str()); // tipo para escrita de arquivo
+    
     clock_t inicio, fim;       // para calcular tempo de cpu
     double tempo;
     int aux;
@@ -94,24 +97,37 @@ void leituraChamada(string entrada, string saida)
     fim = clock(); // Fim da contagem do tempo de CPU
 
     tempo = (fim - inicio)/(double)CLOCKS_PER_SEC; //Cálculo do tempo de CPU
-
-    //Escrita no arquivo ---------------------------------------
-    escrita << "Tempo: " << tempo << "\n";
-    //escrita << "Trocas: " << trocas << "\n";
-    //escrita << "Comparacoes" << comparacoes << "\n";
-
-    for(int i = 0; i < v.size(); i++)
-    escrita << v[i] << " ";//escrita dos dados ordenados arquivo de saída
-  //----------------------------------------------------------
+    tempos.push_back(tempo);
+    
 }
 
 
 int main(int argc, char **argv)
 {   
-    leituraChamada("./entradas/desordenados/ODE-100.txt", "./saidas/merge/desordenadas/SO-100.txt");
-    leituraChamada("./entradas/desordenados/ODE-1000.txt", "./saidas/merge/desordenadas/SO-1000.txt");
-    leituraChamada("./entradas/desordenados/ODE-10000.txt", "./saidas/merge/desordenadas/SO-10000.txt");
-    leituraChamada("./entradas/desordenados/ODE-50000.txt", "./saidas/merge/desordenadas/SO-50000.txt");
-    leituraChamada("./entradas/desordenados/ODE-100000.txt", "./saidas/merge/desordenadas/SO-100000.txt");
+    //comparações e trocas
+    leituraChamada("./entradas/crescente/OC-100.txt");
+    leituraChamada("./entradas/crescente/OC-1000.txt");
+    leituraChamada("./entradas/crescente/OC-10000.txt");
+    leituraChamada("./entradas/crescente/OC-50000.txt");
+    leituraChamada("./entradas/crescente/OC-100000.txt");
+
+    leituraChamada("./entradas/decrescente/OD-100.txt");
+    leituraChamada("./entradas/decrescente/OD-1000.txt");
+    leituraChamada("./entradas/decrescente/OD-10000.txt");
+    leituraChamada("./entradas/decrescente/OD-50000.txt");
+    leituraChamada("./entradas/decrescente/OD-100000.txt");
+
+    leituraChamada("./entradas/desordenados/ODE-100.txt");
+    leituraChamada("./entradas/desordenados/ODE-1000.txt");
+    leituraChamada("./entradas/desordenados/ODE-10000.txt");
+    leituraChamada("./entradas/desordenados/ODE-50000.txt");
+    leituraChamada("./entradas/desordenados/ODE-100000.txt");
+
+    ofstream gravarDados("./dados_merge_cmp.txt");
+    for(int i = 0; i < comparacoes.size(); i++)
+        gravarDados << labels[i] << ": tempo:" << tempos[i] << " comparacoes:"<< comparacoes[i] << " trocas:" << trocas[i] << endl;
+
+
+    return 0;
 
 }
