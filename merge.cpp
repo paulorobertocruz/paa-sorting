@@ -29,10 +29,15 @@ void mergesort( int low, int high)
 
 void merge( int low, int high, int mid)
 {
-    int i, j, k, c[500];
+    int i, j, k;
+    vector<int> c;
     i = low;
     k = low;
     j = mid + 1;
+    
+    
+    c.resize(v.size());
+
     while (i <= mid && j <= high)
     {
         if (v[i] < v[j])
@@ -69,7 +74,7 @@ void merge( int low, int high, int mid)
 
 void leituraChamada(string entrada, string saida)
 {    
-
+    v.clear();
     ifstream leitura(entrada.c_str()); // tipo para leitura de arquivo
     ofstream escrita(saida.c_str()); // tipo para escrita de arquivo
     clock_t inicio, fim;       // para calcular tempo de cpu
@@ -82,7 +87,7 @@ void leituraChamada(string entrada, string saida)
     //-----------------------------------------------------------
 
     inicio = clock(); // início da contagem do tempo de CPU
-    mergesort(0, 4); // chamada do método de ordenação
+    mergesort(0, v.size()-1); // chamada do método de ordenação
     fim = clock(); // Fim da contagem do tempo de CPU
 
     tempo = (fim - inicio)/(double)CLOCKS_PER_SEC; //Cálculo do tempo de CPU
